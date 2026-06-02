@@ -11,6 +11,6 @@
 <P>  The time on the server is ${serverTime}. </P>
 <p> github webhooks과 jenkins을 통한 CI/CD 구축
 <p> 재 빌드 </p>
-<p>제발 자동으로 빌드배포돼ㅇ라!!ㅜ과연ddㅇ!!?!</p>
+<p>제발 자동으로 ㅇ빌드배포돼ㅇ라!!ㅜ과연ddㅇ!!?!</p>
 </body>
 </html>
