@@ -129,7 +129,7 @@
 				<url>${maven.tomcat.url}</url>
 				<username>${maven.tomcat.username}</username>
 				<password>${maven.tomcat.password}</password>
-				<path>/deploy003_SpringMVC</path>
+				<path>/deploy002_SpringMVC</path>
 				<update>true</update>
 			</configuration>
 		</plugin>
