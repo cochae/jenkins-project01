@@ -10,6 +10,6 @@
 
 <p> github webhooks과 jenkins을 통한 CI/CD 구축
 <p> 재 빌드 </p>
-<p>제발 자동으f로 ㅇ빌드배d포돼fㅇ라!!ㅜd과ㅇd연ㅇddfㅇ!!?!</p>
+<p>제발 자동으f로 ㅇ빌드배d포ㅇ돼fㅇ라!!ㅜd과ㅇd연ㅇddfㅇ!!?!</p>
 </body>
 </html>
