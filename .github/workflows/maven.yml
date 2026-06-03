@@ -3,38 +3,32 @@ name: Java CI with Maven
 on:
   push:
     branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-    - name: Set up JDK 21
-      uses: actions/setup-java@v4
-      with:
-        java-version: '21'
-        distribution: 'temurin'
-        cache: maven
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: maven
 
-    - name: Build with Maven
-      run: |
-        mvn clean package \
-        -DskipTests \
-        -f ./pom.xml # 혹시 하위 폴더에 pom.xml이 있다면 경로를 맞춰주세요! 현재 루트면 ./pom.xml
-
-    - name: Deploy to Tomcat Server
-      env:
-        TOMCAT_USERNAME: ${{ secrets.TOMCAT_USERNAME }}
-        TOMCAT_PASSWORD: ${{ secrets.TOMCAT_PASSWORD }}
-        # ⚠️ 현재 켜져 있는 깃허브 웹훅의 ngrok 주소(또는 우분투 공인IP주소)로 변경해 주세요!
-        TOMCAT_URL: 'https://kiwi-celestial-unadvised.ngrok-free.dev/manager/text'
-
-      run: |
-        mvn tomcat:redeploy \
-        -Dmaven.tomcat.url=$TOMCAT_URL \
-        -Dmaven.tomcat.username=$TOMCAT_USERNAME \
-        -Dmaven.tomcat.password=$TOMCAT_PASSWORD \
-        -DskipTests \
-        -f ./pom.xml # 여기도 본인 pom.xml 경로에 맞게!
+      - name: Deploy to Tomcat Server
+        env:
+          TOMCAT_USERNAME: ${{ secrets.TOMCAT_USERNAME }}
+          TOMCAT_PASSWORD: ${{ secrets.TOMCAT_PASSWORD }}
+          TOMCAT_URL: 'https://kiwi-celestial-unadvised.ngrok-free.dev/manager/text'
+        run: |
+          mvn clean package tomcat:redeploy \
+            -Dmaven.tomcat.url=$TOMCAT_URL \
+            -Dmaven.tomcat.username=$TOMCAT_USERNAME \
+            -Dmaven.tomcat.password=$TOMCAT_PASSWORD \
+            -DskipTests \
+            -f ./pom.xml
